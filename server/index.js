@@ -1,10 +1,27 @@
-const express = require("express");
-const app = express();
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-const port = process.env.PORT || 3000; // Use the specified port or default to 3000
+require('dotenv').config();
+const cors = require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
+const mongoString = process.env.DATABASE_URL;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+mongoose.connect(mongoString);
+const database = mongoose.connection;
+
+database.on('error', (error) => {
+    console.log(error)
+})
+
+database.once('connected', () => {
+    console.log('Database Connected');
+})
+const app = express();
+app.use(cors())
+app.use(express.json());
+
+const routes = require('./routes/routes');
+
+app.use('/api', routes)
+
+app.listen(3000, () => {
+    console.log(`Server Started at ${3000}`)
+})
