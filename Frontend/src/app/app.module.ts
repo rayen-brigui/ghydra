@@ -13,8 +13,12 @@ import { AboutComponent } from './about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { ProductComponent } from './product/product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, ProductComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,6 +31,8 @@ import { MatListModule } from '@angular/material/list';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatListModule,
+    NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

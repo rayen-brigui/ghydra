@@ -12,3 +12,29 @@
 .sidenav {
   width: 250px;
 }
+.creative-footer {
+  background-color: #222;
+  color: white;
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,79 @@
+<button (click)="openAddProductModal()" class="add-button">Add Product</button>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let product of displayedProducts">
+    <td>{{ product.id }}</td>
+    <td>{{ product.name }}</td>
+    <td>{{ product.description }}</td>
+    <td>{{ product.quantity }}</td>
+    <td>
+      <button>View</button>
+      <button>Edit</button>
+      <button>Delete</button>
+    </td>
+  </tr>
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal" [class.open]="isModalOpen">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="productName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productName"
+              [(ngModel)]="newProduct.name"
+              name="productName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea
+              class="form-control"
+              id="productDescription"
+              [(ngModel)]="newProduct.description"
+              name="productDescription"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="productQuantity">Quantity</label>
+            <input
+              type="number"
+              class="form-control"
+              id="productQuantity"
+              [(ngModel)]="newProduct.quantity"
+              name="productQuantity"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="addProduct()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

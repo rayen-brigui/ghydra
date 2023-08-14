@@ -1,13 +1,51 @@
-<mat-toolbar color="primary">
-  <img
-    src="https://cdn.discordapp.com/attachments/1045072985700175912/1139143145037250651/dfdfdfs-removebg-preview.png"
-    alt=""
-    width="180"
-  />
-  <h1>Dräxlmaier Assets Management</h1>
-  <menu>
-    <button mat-button routerLink="/">Home</button>
-    <button mat-button routerLink="/about">About</button>
-  </menu>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="https://cdn.discordapp.com/attachments/1045072985700175912/1139143145037250651/dfdfdfs-removebg-preview.png"
+        alt=""
+        width="150"
+        class="navbar-brand"
+    /></a>
+    <h1>Dräxlmaier Assets Management System (DAMS)</h1>
+    <div class="live-time">
+      Current Time: {{ currentTime | date : "mediumTime" }}
+    </div>
+  </div>
+</nav>
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <button ngbNavLink routerLink="/">Home</button>
+  </li>
+  <li ngbNavItem>
+    <button ngbNavLink routerLink="/products">Products</button>
+  </li>
+  <li ngbNavItem>
+    <button ngbNavLink routerLink="/about">About</button>
+  </li>
+</ul>
+<router-outlet class="main-cont"></router-outlet>
+<footer class="creative-footer">
+  <div class="container">
+    <div class="footer-content">
+      <p>&copy; 2023 Dräxlmaier Group. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"
+          ><img
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/1200px-Facebook_f_logo_%282021%29.svg.png"
+            alt="Facebook"
+        /></a>
+        <a href="#"
+          ><img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/220px-Logo_of_Twitter.svg.png"
+            alt="Twitter"
+        /></a>
+        <a href="#"
+          ><img
+            src="https://img.freepik.com/free-icon/linkedin_318-187585.jpg?"
+            alt="LinkedIn"
+        /></a>
+      </div>
+    </div>
+  </div>
+</footer>
