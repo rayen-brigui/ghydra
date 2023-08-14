@@ -28,8 +28,8 @@ router.get("/getAll", async (req, res) => {
 });
 router.post("/addProduct", async (req, res) => {
   try {
-    const { id, name, description, quantity } = req.body;
-    const newProduct = new Model({ id, name, description, quantity });
+    const { id, name, description, quantity,location } = req.body;
+    const newProduct = new Model({ id, name, description, quantity, location });
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {

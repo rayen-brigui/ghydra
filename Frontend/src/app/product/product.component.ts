@@ -17,7 +17,10 @@ export class ProductComponent implements OnInit {
     name: '',
     description: '',
     quantity: 0,
+    location: '',
   };
+  isEditModalOpen: boolean = false;
+  editedProduct: any = {};
   constructor(private http: HttpClient) {
     // Initialize products$
     this.products$ = this.fetchProducts();
@@ -98,7 +101,33 @@ export class ProductComponent implements OnInit {
       name: '',
       description: '',
       quantity: 0,
+      location: '',
     };
     this.closeModal();
+  }
+  openEditModal(product: any): void {
+    this.editedProduct = { ...product }; // Clone the product to avoid direct modification
+    this.isEditModalOpen = true;
+  }
+
+  closeEditModal(): void {
+    this.isEditModalOpen = false;
+    this.editedProduct = {}; // Clear the edited product object
+  }
+
+  updateProduct(): void {
+    const url = `${Server_Url}/updateProduct`; // Replace with your actual API endpoint
+
+    // Prepare the headers (if needed)
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    // Make the POST request
+    this.http
+      .post(url, this.editedProduct, { headers })
+      .subscribe((response) => {
+        console.log('Product updated:', response);
+        this.updateDisplayedProducts();
+        this.closeEditModal();
+      });
   }
 }

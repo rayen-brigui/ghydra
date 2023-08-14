@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+const mongoose = require("mongoose");
 
 const counterSchema = new mongoose.Schema({
   _id: { type: String, required: true },
@@ -21,6 +20,10 @@ const productSchema = new mongoose.Schema({
     required: true,
     type: Number,
   },
+  location: {
+    required: true,
+    type: String,
+  },
 });
 productSchema.pre("save", async function (next) {
   if (this.isNew) {
@@ -37,4 +40,4 @@ productSchema.pre("save", async function (next) {
   }
   next();
 });
-module.exports = mongoose.model('Product', productSchema)
+module.exports = mongoose.model("Product", productSchema);

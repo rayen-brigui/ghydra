@@ -6,6 +6,7 @@
     <th>Name</th>
     <th>Description</th>
     <th>Quantity</th>
+    <th>Location</th>
     <th>Actions</th>
   </tr>
   <tr *ngFor="let product of displayedProducts">
@@ -13,22 +14,21 @@
     <td>{{ product.name }}</td>
     <td>{{ product.description }}</td>
     <td>{{ product.quantity }}</td>
+    <td>{{ product.location }}</td>
     <td>
       <button>View</button>
-      <button>Edit</button>
+      <button (click)="openEditModal(product)">Edit</button>
       <button>Delete</button>
     </td>
   </tr>
 </table>
-
-
 
 <!-- Modal -->
 <div class="modal" [class.open]="isModalOpen">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Product</h5>
+        <h4 class="modal-title" id="modal-basic-title">Add Product</h4>
         <button type="button" class="close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -64,6 +64,16 @@
               name="productQuantity"
             />
           </div>
+          <div class="form-group">
+            <label for="productLocation">Location</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productLocation"
+              [(ngModel)]="newProduct.location"
+              name="productLocation"
+            />
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -72,6 +82,79 @@
         </button>
         <button type="button" class="btn btn-primary" (click)="addProduct()">
           Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EditModal -->
+<div class="modal" [class.open]="isEditModalOpen">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Product</h5>
+        <button type="button" class="close" (click)="closeEditModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="editProductName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editProductName"
+              [(ngModel)]="editedProduct.name"
+              name="editProductName"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="editProductDescription">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editProductDescription"
+              [(ngModel)]="editedProduct.description"
+              name="editProductDescription"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="editProductQuantity">Quantity</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editProductQuantity"
+              [(ngModel)]="editedProduct.quantity"
+              name="editProductQuantity"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editProductLocation">Location</label>
+            <input
+              type="text"
+              class="form-control"
+              id="editProductLocation"
+              [(ngModel)]="editedProduct.location"
+              name="editProductLocation"
+            />
+          </div>
+          <!-- Other input fields for editing -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeEditModal()"
+        >
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="updateProduct()">
+          Save Changes
         </button>
       </div>
     </div>
